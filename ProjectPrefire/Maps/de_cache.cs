@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectPrefire.Maps
+namespace ProjectPrefire
 {
-    class de_cache : Map
+    public class de_cache : Map
     {
         public de_cache()
         {
