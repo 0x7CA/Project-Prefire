@@ -21,7 +21,6 @@ namespace ProjectPrefire
 			this.game = game;
 			Control canvas = Application.OpenForms [0].Controls.Find ("mapBox", true).FirstOrDefault ();
 			drawer = new Drawer (canvas);
-			Filter ();
 		}
 
 		public void Filter (int delay = 3)

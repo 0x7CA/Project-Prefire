@@ -10,24 +10,45 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using CsvHelper;
+using System.Reflection;
 
 namespace ProjectPrefire
 {
 	public partial class Form1 : Form
 	{
+		private List<Game> games = new List<Game> ();
+
 		public Form1 ()
 		{
 			InitializeComponent ();
 		}
 
-		Logger logger = new Logger ();
-		List<Game> games = new List<Game> ();
-
 		private void Form1_Load (object sender, EventArgs e)
 		{
 			//TODO CSV parsing code could potentially be cleaned up a little.
-			string folder = Path.GetDirectoryName (Process.GetCurrentProcess ().MainModule.FileName);
+			Console.WriteLine("*********************************");
+			Console.WriteLine("BEGIN CSV PARSING");
+			Console.WriteLine("*********************************");
+			Console.WriteLine("Getting current directory..");
+			string folder = Path.GetDirectoryName (Assembly.GetEntryAssembly().Location);
+			Console.WriteLine("Directory: " + folder);
+			Console.WriteLine("Searching for files with the _meta.csv suffix..");
 			string[] replays = Directory.GetFiles (folder, "*_meta.csv");
+
+			if(replays.Length == 0)
+			{
+				Console.WriteLine("Could not find any replays... terminating");
+				System.Environment.Exit(1);
+			}
+
+
+			Console.WriteLine("Detetected Replay meta files:");
+
+
+			foreach(string r in replays){
+				Console.WriteLine("\t" + r);
+			}
+
 			foreach (string replay in replays) {
 				string meta = "_meta.csv";
 				string filename = Path.GetFileName (replay);
@@ -41,18 +62,22 @@ namespace ProjectPrefire
 				while ((row = parser.Read ()) != null) {
 					rows.Add (row);
 				}
+				Console.WriteLine ("Creating game object for: " + filename + "..");
 				Game game = new Game (rows, MapFactory.Instance.GetMap (mapName));
 				games.Add (game);
 				//uhhh..?
 				mapBox.Image = Image.FromFile (mapName + ".png");
-				logger.writeLog ("XD");
+
 			}
+			Console.WriteLine("*********************************");
+			Console.WriteLine("END CSV PARSING");
+			Console.WriteLine("*********************************");
 		}
 
 		private void mapBox_Click (object sender, EventArgs e)
 		{
-			new Analyzer (games.First ());
-			//analyzer.Replay();
+			Analyzer a = new Analyzer (games.First ());
+			a.Filter ();
 		}
 
 		private void log_SelectedIndexChanged (object sender, EventArgs e)

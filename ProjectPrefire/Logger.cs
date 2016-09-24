@@ -12,8 +12,8 @@ namespace ProjectPrefire
 
         public void writeLog(string l)
         {
-            ListBox log = Application.OpenForms[0].Controls.Find("log", true).FirstOrDefault() as ListBox;
-            log.Items.Add(l);
+            //ListBox log = Application.OpenForms[0].Controls.Find("log", true).FirstOrDefault() as ListBox;
+            //log.Items.Add(l);
         }
     }
 }
