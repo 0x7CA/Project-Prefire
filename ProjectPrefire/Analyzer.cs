@@ -30,10 +30,7 @@ namespace ProjectPrefire
 
 
 				foreach(PlayerState state in player.playerStates){
-					//This could posibily be done when parsing the csv
-					game.map.convertPlayerState(state);
 					Color color = Color.Blue;
-
 					if (player.team == 1) {
 						color = Color.Red;
 					}

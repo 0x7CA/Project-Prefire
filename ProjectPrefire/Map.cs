@@ -14,15 +14,21 @@ namespace ProjectPrefire
         public float startX { get; set; }
         public float startY { get; set; }
 
-		//returnen hier? hoe zit dat met structs..
-		public void convertPlayerState(PlayerState state)
+		public float ConvertX(float x)
 		{
-			state.posX += (startX < 0) ? startX * -1 : startX;
-			state.posY += (startY < 0) ? startY * -1 : startY;
-			state.posX = (float)Math.Floor((state.posX / sizeX) * 860);
-			state.posY = (float)Math.Floor((state.posY / sizeY) * 860);
-			state.posY = (state.posY - 860) * -1;
+			x += (startX < 0) ? startX * -1 : startX;
+			x = (float)Math.Floor((x / sizeX) * 860);
+			return x;
 		}
+
+		public float ConvertY(float y)
+		{
+			y += (startY < 0) ? startY * -1 : startY;
+			y = (float)Math.Floor((y / sizeY) * 860);
+			y = (y - 860) * -1;
+			return y;
+		}
+
     }
 		
 }
