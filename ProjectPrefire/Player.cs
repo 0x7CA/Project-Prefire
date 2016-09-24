@@ -5,9 +5,11 @@ namespace ProjectPrefire
 {
 	public class Player
 	{
-		public int playerId { get;}
-		public int team { get;}
-		public List<PlayerState> playerStates { get;}
+		public int playerId { get; }
+
+		public int team { get; }
+
+		public List<PlayerState> playerStates { get; }
 
 		public Player (int id, int team)
 		{

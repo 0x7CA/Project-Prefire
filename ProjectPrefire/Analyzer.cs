@@ -14,7 +14,6 @@ namespace ProjectPrefire
 	{
 		//Logger log = new Logger();
 		Drawer drawer { get; set; }
-
 		Game game;
 
 		public Analyzer (Game game)
@@ -28,8 +27,6 @@ namespace ProjectPrefire
 		public void Filter (int delay = 3)
 		{
 			foreach (Player player in game.players) {
-
-
 				foreach (PlayerState state in player.playerStates) {
 					Color color = Color.Blue;
 					if (player.team == 1) {
@@ -42,11 +39,6 @@ namespace ProjectPrefire
 					drawer.drawCircle (state.posX, state.posY, color);
 					drawer.drawLine (state.posX, state.posY, x2, y2, color);
 				}
-
-				/*
-                drawer.drawString("HIE asdasd1 123 AD dd", 10, 10 * id, Color.Red);
-                drawer.drawRectangle(10, 10, 100, 100, Color.Red);
-          		*/
 			}
 		}
 	}

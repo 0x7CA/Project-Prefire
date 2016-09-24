@@ -4,28 +4,25 @@
 namespace ProjectPrefire
 {
 	//TODO Not thread safe
-    public class MapFactory
-    {
-		public static MapFactory instance; 
+	public class MapFactory
+	{
+		public static MapFactory instance;
 
-		private MapFactory()
+		private MapFactory ()
 		{
 		}
-			
-		public static MapFactory Instance
-		{
-			get
-			{ 
-				if(instance == null)
-					instance = new MapFactory();
+
+		public static MapFactory Instance {
+			get { 
+				if (instance == null)
+					instance = new MapFactory ();
 				return instance;
 			}
 		}
 
-		public Map GetMap(string mapName)
+		public Map GetMap (string mapName)
 		{
-			switch(mapName)
-			{
+			switch (mapName) {
 			case "de_dust2":
 				return new de_dust2 ();
 			case "de_cache":
@@ -35,5 +32,5 @@ namespace ProjectPrefire
 				return null;
 			}
 		}
-    }
+	}
 }
