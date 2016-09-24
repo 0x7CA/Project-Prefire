@@ -18,11 +18,11 @@ namespace ProjectPrefire
 
 
 
-        public Drawer(Control canvas, string map)
+        public Drawer(Control canvas)
         {
 
             gfx = canvas.CreateGraphics();
-            Pen redPen = new System.Drawing.Pen(System.Drawing.Color.Red);
+            //Pen redPen = new System.Drawing.Pen(System.Drawing.Color.Red);
             brushBlue = Brushes.Blue;
             brushRed = Brushes.Red;
  

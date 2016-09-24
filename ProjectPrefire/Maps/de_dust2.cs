@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectPrefire.Maps
+namespace ProjectPrefire
 {
-    class de_dust2 : Map
+    public class de_dust2 : Map
     {
         public de_dust2()
         {
