@@ -16,8 +16,9 @@ namespace ProjectPrefire
 {
 	public partial class Form1 : Form
 	{
-		private List<Game> games = new List<Game> ();
+		private List<Match> matches = new List<Match> ();
 		private Logger logger = Logger.Instance;
+
 		public Form1 ()
 		{
 			InitializeComponent ();
@@ -28,27 +29,26 @@ namespace ProjectPrefire
 		{
 
 			//TODO CSV parsing code could potentially be cleaned up a little.
-			logger.WriteLog("*****************");
-			logger.WriteLog("BEGIN CSV PARSING");
-			logger.WriteLog("*****************");
-			logger.WriteLog("Getting current directory..");
-			string folder = Path.GetDirectoryName (Assembly.GetEntryAssembly().Location);
-			logger.WriteLog("Directory: " + folder);
-			logger.WriteLog("Searching for files with the _meta.csv suffix..");
+			logger.WriteLog ("*****************");
+			logger.WriteLog ("BEGIN CSV PARSING");
+			logger.WriteLog ("*****************");
+			logger.WriteLog ("Getting current directory..");
+			string folder = Path.GetDirectoryName (Assembly.GetEntryAssembly ().Location);
+			logger.WriteLog ("Directory: " + folder);
+			logger.WriteLog ("Searching for files with the _meta.csv suffix..");
 			string[] replays = Directory.GetFiles (folder, "*_meta.csv");
 
-			if(replays.Length == 0)
-			{
-				logger.WriteLog("Could not find any replays... terminating");
-				System.Environment.Exit(1);
+			if (replays.Length == 0) {
+				logger.WriteLog ("Could not find any replays... terminating");
+				System.Environment.Exit (1);
 			}
 
 
-			logger.WriteLog("Detetected Replay meta files:");
+			logger.WriteLog ("Detetected Replay meta files:");
 
 
-			foreach(string r in replays){
-				logger.WriteLog("\t" + r);
+			foreach (string r in replays) {
+				logger.WriteLog ("\t" + r);
 			}
 
 			foreach (string replay in replays) {
@@ -65,21 +65,21 @@ namespace ProjectPrefire
 					rows.Add (row);
 				}
 				logger.WriteLog ("Creating game object for: " + filename + "..");
-				Game game = new Game (rows, MapFactory.Instance.GetMap (mapName));
-				games.Add (game);
+				Match match = new Match (rows, MapFactory.Instance.GetMap (mapName));
+				matches.Add (match);
 				//uhhh..?
 				mapBox.Image = Image.FromFile (mapName + ".png");
 
 			}
-			logger.WriteLog("*****************");
-			logger.WriteLog("END CSV PARSING");
-			logger.WriteLog("*****************");
+			logger.WriteLog ("*****************");
+			logger.WriteLog ("END CSV PARSING");
+			logger.WriteLog ("*****************");
 		}
 
 		private void mapBox_Click (object sender, EventArgs e)
 		{
 			logger.WriteLog ("Starting analysis..");
-			Analyzer a = new Analyzer (games.First ());
+			Analyzer a = new Analyzer (matches.First ());
 			a.Filter ();
 		}
 

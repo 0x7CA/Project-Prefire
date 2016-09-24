@@ -64,7 +64,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Logger.cs" />
-    <Compile Include="Game.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapFactory.cs" />
     <Compile Include="Maps\de_cache.cs" />
@@ -99,6 +98,7 @@
     <None Include="Resources\de_train.png" />
     <None Include="Resources\de_mirage.png" />
     <None Include="Resources\de_dust2.png" />
+    <Compile Include="Match.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

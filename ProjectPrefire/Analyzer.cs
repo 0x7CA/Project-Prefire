@@ -14,11 +14,12 @@ namespace ProjectPrefire
 	{
 		//Logger log = new Logger();
 		Drawer drawer { get; set; }
-		Game game;
 
-		public Analyzer (Game game)
+		private Match match;
+
+		public Analyzer (Match match)
 		{
-			this.game = game;
+			this.match = match;
 			Control canvas = Application.OpenForms [0].Controls.Find ("mapBox", true).FirstOrDefault ();
 			drawer = new Drawer (canvas);
 		}
@@ -27,7 +28,7 @@ namespace ProjectPrefire
 		{
 			Logger.Instance.WriteLog ("Applying filters..");
 			Logger.Instance.WriteLog ("Drawing objects..");
-			foreach (Player player in game.players) {
+			foreach (Player player in match.players) {
 				foreach (PlayerState state in player.playerStates) {
 					Color color = Color.Blue;
 					if (player.team == 1) {

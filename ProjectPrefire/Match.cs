@@ -6,13 +6,13 @@ using System.Linq;
 
 namespace ProjectPrefire
 {
-	public class Game
+	public class Match
 	{
 		public List<Player> players { get; set; }
 
 		public Map map { get; set; }
 
-		public Game (List<string[]> csvRows, Map map)
+		public Match (List<string[]> csvRows, Map map)
 		{
 			this.map = map;
 			//TODO This might not be the most suitable place.
@@ -40,7 +40,7 @@ namespace ProjectPrefire
 						int.Parse (row [0])));
 				} else {
 					Player p = new Player (int.Parse (row [5]), int.Parse (row [6]));
-					Logger.Instance.WriteLog("Adding information for player with playerid: " + p.playerId);
+					Logger.Instance.WriteLog ("Adding information for player with playerid: " + p.playerId);
 					p.playerStates.Add (new PlayerState (
 						map.ConvertX (float.Parse (row [1])), 
 						map.ConvertY (float.Parse (row [2])),
