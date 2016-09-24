@@ -25,6 +25,8 @@ namespace ProjectPrefire
 
 		public void Filter (int delay = 3)
 		{
+			Logger.Instance.WriteLog ("Applying filters..");
+			Logger.Instance.WriteLog ("Drawing objects..");
 			foreach (Player player in game.players) {
 				foreach (PlayerState state in player.playerStates) {
 					Color color = Color.Blue;

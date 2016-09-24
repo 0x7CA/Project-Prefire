@@ -95,6 +95,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\de_cache.png" />
+    <None Include="Resources\de_train.png" />
+    <None Include="Resources\de_mirage.png" />
+    <None Include="Resources\de_dust2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -107,4 +111,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
 </Project>

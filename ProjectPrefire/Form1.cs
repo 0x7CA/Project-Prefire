@@ -17,36 +17,38 @@ namespace ProjectPrefire
 	public partial class Form1 : Form
 	{
 		private List<Game> games = new List<Game> ();
-
+		private Logger logger = Logger.Instance;
 		public Form1 ()
 		{
 			InitializeComponent ();
+			logger.SetOutput (log);
 		}
 
 		private void Form1_Load (object sender, EventArgs e)
 		{
+
 			//TODO CSV parsing code could potentially be cleaned up a little.
-			Console.WriteLine("*********************************");
-			Console.WriteLine("BEGIN CSV PARSING");
-			Console.WriteLine("*********************************");
-			Console.WriteLine("Getting current directory..");
+			logger.WriteLog("*****************");
+			logger.WriteLog("BEGIN CSV PARSING");
+			logger.WriteLog("*****************");
+			logger.WriteLog("Getting current directory..");
 			string folder = Path.GetDirectoryName (Assembly.GetEntryAssembly().Location);
-			Console.WriteLine("Directory: " + folder);
-			Console.WriteLine("Searching for files with the _meta.csv suffix..");
+			logger.WriteLog("Directory: " + folder);
+			logger.WriteLog("Searching for files with the _meta.csv suffix..");
 			string[] replays = Directory.GetFiles (folder, "*_meta.csv");
 
 			if(replays.Length == 0)
 			{
-				Console.WriteLine("Could not find any replays... terminating");
+				logger.WriteLog("Could not find any replays... terminating");
 				System.Environment.Exit(1);
 			}
 
 
-			Console.WriteLine("Detetected Replay meta files:");
+			logger.WriteLog("Detetected Replay meta files:");
 
 
 			foreach(string r in replays){
-				Console.WriteLine("\t" + r);
+				logger.WriteLog("\t" + r);
 			}
 
 			foreach (string replay in replays) {
@@ -62,20 +64,21 @@ namespace ProjectPrefire
 				while ((row = parser.Read ()) != null) {
 					rows.Add (row);
 				}
-				Console.WriteLine ("Creating game object for: " + filename + "..");
+				logger.WriteLog ("Creating game object for: " + filename + "..");
 				Game game = new Game (rows, MapFactory.Instance.GetMap (mapName));
 				games.Add (game);
 				//uhhh..?
 				mapBox.Image = Image.FromFile (mapName + ".png");
 
 			}
-			Console.WriteLine("*********************************");
-			Console.WriteLine("END CSV PARSING");
-			Console.WriteLine("*********************************");
+			logger.WriteLog("*****************");
+			logger.WriteLog("END CSV PARSING");
+			logger.WriteLog("*****************");
 		}
 
 		private void mapBox_Click (object sender, EventArgs e)
 		{
+			logger.WriteLog ("Starting analysis..");
 			Analyzer a = new Analyzer (games.First ());
 			a.Filter ();
 		}

@@ -40,6 +40,7 @@ namespace ProjectPrefire
 						int.Parse (row [0])));
 				} else {
 					Player p = new Player (int.Parse (row [5]), int.Parse (row [6]));
+					Logger.Instance.WriteLog("Adding information for player with playerid: " + p.playerId);
 					p.playerStates.Add (new PlayerState (
 						map.ConvertX (float.Parse (row [1])), 
 						map.ConvertY (float.Parse (row [2])),

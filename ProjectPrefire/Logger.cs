@@ -4,16 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace ProjectPrefire
 {
-    public class Logger
-    {
-        public Logger() { }
+	public class Logger
+	{
+		public ListBox box;
 
-        public void writeLog(string l)
-        {
-            //ListBox log = Application.OpenForms[0].Controls.Find("log", true).FirstOrDefault() as ListBox;
-            //log.Items.Add(l);
-        }
-    }
+		public static Logger instance;
+
+		public static Logger Instance {
+			get { 
+				if (instance == null)
+					instance = new Logger ();
+				return instance;
+			}
+		}
+
+		public void SetOutput (ListBox output)
+		{
+			box = output;	
+		}
+
+		private Logger ()
+		{
+		}
+
+
+
+		public void WriteLog (string l)
+		{
+			box.Items.Add (l);
+		}
+
+
+	}
 }
