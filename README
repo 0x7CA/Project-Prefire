@@ -2,3 +2,6 @@ Frequency visualization of camping spots + view angles
 Correlation of movement and winrates
 Finding statistically best strategies in buy and eco rounds
 Clustering pro movement patterns to find out different and similar teams
+
+
+ReplayParser forked and adapted from: https://github.com/StatsHelix/demoinfo
